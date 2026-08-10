@@ -28,7 +28,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div>
             <div className="flex items-center space-x-2">
               <h1 className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
-                Desiciones
+                DECISIONES
               </h1>
               <span className="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-800 dark:bg-amber-950/60 dark:text-amber-300">
                 IA Decisiones
