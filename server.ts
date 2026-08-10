@@ -207,7 +207,7 @@ Asegúrate de evaluar cada una de las opciones con identificadores "opt_0", "opt
       contents: promptText,
       config: {
         systemInstruction,
-        temperature: 0.2, // Low temperature for consistent structure and logic
+        temperature: 0.2,
         responseMimeType: 'application/json',
         responseSchema,
       },
@@ -224,6 +224,7 @@ Asegúrate de evaluar cada una de las opciones con identificadores "opt_0", "opt
     const formattedComparisonCriteria = (jsonResult.comparisonCriteria || []).map((c: any, index: number) => {
       const scores: Record<string, number> = {};
       const notes: Record<string, string> = {};
+
       if (Array.isArray(c.optionScores)) {
         c.optionScores.forEach((os: any) => {
           if (os.optionId) {
@@ -234,6 +235,7 @@ Asegúrate de evaluar cada una de las opciones con identificadores "opt_0", "opt
           }
         });
       }
+
       return {
         id: c.id || `crit_${index + 1}`,
         name: c.name || 'Criterio',
@@ -246,6 +248,7 @@ Asegúrate de evaluar cada una de las opciones con identificadores "opt_0", "opt
 
     // Transform swotItems array to swot Record<string, SwotAnalysis>
     const formattedSwot: Record<string, any> = {};
+
     if (Array.isArray(jsonResult.swotItems)) {
       jsonResult.swotItems.forEach((item: any) => {
         if (item.optionId) {
@@ -263,6 +266,7 @@ Asegúrate de evaluar cada una de las opciones con identificadores "opt_0", "opt
     // Ensure pros impacts are positive and cons impacts are negative
     const formattedOptions = (jsonResult.options || []).map((opt: any, optIndex: number) => {
       const optId = opt.optionId || `opt_${optIndex}`;
+
       return {
         ...opt,
         optionId: optId,
@@ -360,6 +364,7 @@ async function startServer() {
       server: { middlewareMode: true },
       appType: 'spa',
     });
+
     app.use(vite.middlewares);
   } else {
     const distPath = path.join(process.cwd(), 'dist');
